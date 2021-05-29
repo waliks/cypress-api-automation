@@ -1,4 +1,6 @@
 {
     "testFiles": "**/*.feature",
-    "baseUrl": "https://gorest.co.in/public-api"
+    "baseUrl": "https://gorest.co.in/public-api",
+    "token": "17c7a3d919ef390686aada2e8e0f99019185447ad5f217584827a215bb6eff1c"
+
 }
