@@ -1,6 +1,7 @@
 /* global Given, Then, When, And */
 
 import UsersService from '../services/UsersService'
+const faker = require('faker')
 const token = Cypress.config("token")
 const userService = new UsersService
 let body, emptyBody
@@ -23,9 +24,9 @@ And("the data.message should be 'Authentication failed'", () => {
 
 Given("A request body with all the required fields", () => {
     body = {
-        "name": "Jota",
+        "name": faker.name.firstName(),
         "gender": "Male",
-        "email": "Jenali.ramakrishna@15ce.com",
+        "email": faker.internet.email(),
         "status": "Active"
     }
 })

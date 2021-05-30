@@ -9,12 +9,13 @@
   },
   "cypress-cucumber-preprocessor": {
     "step_definitions": "cypress/support/steps"
-  }, 
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^7.4.0",
-    "cypress-cucumber-preprocessor": "^4.1.1"
+    "cypress-cucumber-preprocessor": "^4.1.1",
+    "faker": "^5.5.3"
   }
 }
