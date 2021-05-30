@@ -5,15 +5,27 @@ const url = Cypress.config("baseUrl")
 class UsersService {
     
     getUserDetails(id, alias){
-        cy.request("GET", `${url}/users/${id}`).as(alias)
+        cy.request({
+            method: "GET", 
+            url: `${url}/users/${id}`
+        }).as(alias)
     }
 
     createUser(auth, body, alias){
-        //cy.request("POST", `${url}/users`, body).auth(null, null, true, auth).as(alias)
         cy.request({
             method: 'POST',
             url: `${url}/users`,
             body: body,
+            auth: {
+                'bearer': auth
+              }
+        }).as(alias)
+    }
+
+    deleteUser(auth, alias, id){
+        cy.request({
+            method: 'DELETE',
+            url: `${url}/users/${id}`,
             auth: {
                 'bearer': auth
               }
