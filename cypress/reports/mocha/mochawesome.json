@@ -1,0 +1,145 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-05-31T00:12:15.760Z",
+    "end": "2021-05-31T00:12:19.389Z",
+    "duration": 3629,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "da5a83d4-e0c6-402a-80cd-23e56c4bcc30",
+      "title": "",
+      "fullFile": "cypress/integration/createUser.feature",
+      "file": "cypress/integration/createUser.feature",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "74976004-1d4a-44fa-8e98-a93e97d9323c",
+          "title": "Create user",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "No authorization to create user",
+              "fullTitle": "Create user No authorization to create user",
+              "timedOut": null,
+              "duration": 2188,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "26b4670b-4e51-4d73-a244-e5377dd5e0b3",
+              "parentUUID": "74976004-1d4a-44fa-8e98-a93e97d9323c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Create user successfully",
+              "fullTitle": "Create user Create user successfully",
+              "timedOut": null,
+              "duration": 956,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "ab942475-19a6-4818-bbda-9ae83605d099",
+              "parentUUID": "74976004-1d4a-44fa-8e98-a93e97d9323c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Try to create a user with none of the required fields",
+              "fullTitle": "Create user Try to create a user with none of the required fields",
+              "timedOut": null,
+              "duration": 427,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "2f1a9a92-313e-4527-877f-c31364afc090",
+              "parentUUID": "74976004-1d4a-44fa-8e98-a93e97d9323c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "26b4670b-4e51-4d73-a244-e5377dd5e0b3",
+            "ab942475-19a6-4818-bbda-9ae83605d099",
+            "2f1a9a92-313e-4527-877f-c31364afc090"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3571,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quiet": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

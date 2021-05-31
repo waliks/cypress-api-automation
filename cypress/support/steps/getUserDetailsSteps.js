@@ -5,33 +5,32 @@ const userService = new UsersService
 const validId = 42
 const invalidId = 99999
 
-Given("A valid id", () => {
-  
-})
+// Scenario: Get user details with valid id
+    Given("A valid id", () => {
+    
+    })
 
-When("I access the endpoint to get user details", () => {
-    userService.getUserDetails(validId, "userDetails")
-})
+    When("I access the endpoint to get user details", () => {
+        userService.getUserDetails(validId, "userDetails")
+    })
 
-//When("the format specification is .json or it's implicit", () => {
-  //  userService.checkFormatSpecification();
-//})
+    Then("response status code should be 200", () => {
+        userService.checkStatusCode(200, "@userDetails");
+    }) 
 
-//Then("the response should be in json format", () => {
-  //  loginPage.visualizarBotaoRecuperarSenha();
-//})
-Then("response status code should be 200", () => {
-    userService.checkStatusCode(200, "@userDetails");
-}) 
+// Scenario: Try to get user details with invalid id
+    Given("An invalid id", () => {
 
-Given("An invalid id", () => {
+    })
 
-})
+    When("I access the endpoint to get user details with the invalid id", () => {
+        userService.getUserDetails(invalidId, "invalidUserDetails")
+    })
 
-When("I access the endpoint to get user details with the invalid id", () => {
-    userService.getUserDetails(invalidId, "invalidUserDetails")
-})
+    Then("the failed response status code should be 404", () => {
+        userService.checkStatusCode(404, "@invalidUserDetails")
+    })
 
-Then("response status code should be 404", () => {
-    userService.checkStatusCode(404, "@invalidUserDetails")
-})
+    And("the failed message should be 'Resource not found'", () => {
+        userService.checkErrorMessage('Resource not found', "@invalidUserDetails")
+    })

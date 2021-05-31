@@ -1,6 +1,16 @@
 {
     "testFiles": "**/*.feature",
     "baseUrl": "https://gorest.co.in/public-api",
-    "token": "17c7a3d919ef390686aada2e8e0f99019185447ad5f217584827a215bb6eff1c"
-
+    "token": "17c7a3d919ef390686aada2e8e0f99019185447ad5f217584827a215bb6eff1c",
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "quiet": true,
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
+    }
 }

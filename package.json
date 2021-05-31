@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run --browser chrome --no-exit",
-    "cy:open": "cypress open --project ./"
+    "cy:run": "cypress run",
+    "cy:parallel": "cypress-parallel -s cy:run -t 3 -d ./cypress/integration",
+    "clean:reports": "rm -R -f cypress/reports && mkdir -p cypress/reports/mochareports",
+    "combine-reports": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochareports/report.json",
+    "generate-report": "marge cypress/reports/mochareports/report.json -f report -o cypress/reports/",
+    "pretest": "npm run clean:reports",
+    "posttest": "npm run combine-reports && npm run generate-report",
+    "test": "npm run cy:run"
   },
   "cypress-cucumber-preprocessor": {
     "step_definitions": "cypress/support/steps"
@@ -16,6 +22,17 @@
   "devDependencies": {
     "cypress": "^7.4.0",
     "cypress-cucumber-preprocessor": "^4.1.1",
-    "faker": "^5.5.3"
+    "cypress-multi-reporters": "^1.5.0",
+    "faker": "^5.5.3",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.2.0"
+  },
+  "dependencies": {
+    "cypress-parallel": "^0.3.0",
+    "ls": "^0.2.1",
+    "mocha": "^5.2.0",
+    "mochawesome": "^6.2.2",
+    "rimraf": "^3.0.2",
+    "yargs": "^17.0.1"
   }
 }
