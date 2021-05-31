@@ -5,6 +5,7 @@ Feature: Create user
         When I try to access the endpoint to create a user
         Then the response status code should be 401
         And the data.message should be 'Authentication failed'
+        And the response body should match json schema for no authorization to create user
 
     Scenario: Create user successfully
         Given A request body with all the required fields
@@ -17,3 +18,4 @@ Feature: Create user
         When I access the endpoint to create a user with empty response body
         Then the response status code should be 422
         And the data.message should be 'can't be blank'
+        And the response body should match json schema missing the required fields

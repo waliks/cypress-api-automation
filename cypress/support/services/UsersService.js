@@ -1,6 +1,8 @@
 /// <reference types="Cypress" />
 
 const url = Cypress.config("baseUrl")
+const Ajv = require("ajv")
+const ajv = new Ajv()
 
 class UsersService {
     
@@ -48,6 +50,12 @@ class UsersService {
         cy.get(`${alias}`).should((response) => {
             expect(response.body.data[0].message).to.eq(message)
         })
+    }
+
+    validateSchema(schema, data){
+        const valid = ajv.validate(schema, data)
+        if (!valid) console.log(ajv.errors)
+        expect(valid).to.eq(true)
     }
 }
 
