@@ -22,3 +22,13 @@ To run a specific spec:
 ``` shell script
 $ npx cypress run --spec ./cypress/integration/<file>.feature
 ```
+
+## Running with docker
+
+``` shell script
+$ docker build -t cypress-api-automation:latest
+```
+
+``` shell script
+$ docker run cypress-api-automation:latest
+```
