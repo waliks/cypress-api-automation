@@ -12,6 +12,13 @@ Feature: Create user
         When I access the endpoint to create a user
         Then the response status code should be 201
         And the reponse body should have all the required fields
+
+    Scenario: Try to create a user with email already taken
+        Given a valid body, but with an email already registered
+        When I access the endpoint to create a user with such email
+        Then the failed response status code should be 422
+        And the error message should be 'has already been taken' 
+        And the reponse body should match json schema for failure
     
     Scenario: Try to create a user with none of the required fields
         Given A request body missing all of the required fields

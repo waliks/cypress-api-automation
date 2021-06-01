@@ -4,13 +4,19 @@ import UsersService from '../services/UsersService'
 import { createUserEmptyBodySchema } from '../schemas/createUserEmptyBodySchema'
 import { userDetailsSchema } from '../schemas/userDetailsSchema'
 import { failedSchema } from '../schemas/failedSchema'
+import { emailFailureSchema } from '../schemas/emailFailureSchema'
 
 const faker = require('faker')
 const token = Cypress.config("token")
 const userService = new UsersService
 
-let body, emptyBody, invalidToken, userCreatedId, dataEmptyBody,
-    dataNoAuth, dataUserCreated
+let body, body2, emptyBody, invalidToken, userCreatedId, dataEmptyBody,
+    dataNoAuth, dataUserCreated, dataEmailFailure, email
+
+
+after("Delete user created for the tests", () => {
+    userService.deleteUser(token, 'userDeleted', userCreatedId)
+})
 
 // Scenario: No authorization to create user
     Given("I don't have a valid token", () => {
@@ -52,6 +58,7 @@ let body, emptyBody, invalidToken, userCreatedId, dataEmptyBody,
         cy.get('@userCreated').then((response) => {
             userCreatedId = response.body.data.id
             dataUserCreated = response.body
+            email = response.body.data.email
         })
     })
 
@@ -61,8 +68,35 @@ let body, emptyBody, invalidToken, userCreatedId, dataEmptyBody,
 
     And("the reponse body should have all the required fields", () => {
         userService.validateSchema(userDetailsSchema, dataUserCreated)
-    // Deleting the user after the validations
-        userService.deleteUser(token, 'userDeleted', userCreatedId)
+    })
+
+// Scenario: Try to create a user with email already taken
+    Given("a valid body, but with an email already registered", () => {
+        body2 = {
+            "name": faker.name.firstName(),
+            "gender": "Male",
+            "email": email,
+            "status": "Active"
+        }
+    })
+
+    When("I access the endpoint to create a user with such email", () => {
+        userService.createUser(token, body, "emailFailure")
+        cy.get('@emailFailure').then((response) => {
+            dataEmailFailure = response.body
+        })
+    })
+
+    Then("the failed response status code should be 422", () => {
+        userService.checkStatusCode(422, '@emailFailure')
+    })
+
+    And("the error message should be 'has already been taken'", () => {
+        userService.checkErrorFieldMessage('has already been taken', '@emailFailure')
+    })
+
+    And("the reponse body should match json schema for failure", () => {
+        userService.validateSchema(emailFailureSchema, dataEmailFailure)
     })
 
 // Scenario: Try to create a user with none of the required fields
@@ -83,7 +117,7 @@ let body, emptyBody, invalidToken, userCreatedId, dataEmptyBody,
     })
 
     And("the data.message should be 'can't be blank'", () => {
-        userService.checkBlankFieldMessage("can't be blank", "@userEmptyBody")
+        userService.checkErrorFieldMessage("can't be blank", "@userEmptyBody")
     })
 
     And("the response body should match json schema missing the required fields", () => {

@@ -46,7 +46,7 @@ class UsersService {
         })
     }
 
-    checkBlankFieldMessage(message, alias){
+    checkErrorFieldMessage(message, alias){
         cy.get(`${alias}`).should((response) => {
             expect(response.body.data[0].message).to.eq(message)
         })
